@@ -1,0 +1,49 @@
+# Types
+type Etudiant {
+    id: ID
+    nom: String
+    prenom: String
+    genre: Genre
+    centre: Centre
+}
+
+type Centre {
+    id: ID
+    nom: String
+    adresse: String
+    listEtudiants: [Etudiant]
+}
+
+# Enums
+enum Genre {
+    Homme
+    Femme
+}
+
+# Input Types
+input EtudiantDTO {
+    nom: String!
+    prenom: String
+    genre: Genre!
+    centreId: ID!
+}
+
+# Queries
+type Query {
+    listEtudiants: [Etudiant]
+    getEtudiant(id: ID!): Etudiant
+    listCentres: [Centre]
+    getCentre(id: ID!): Centre
+}
+
+# Mutations
+type Mutation {
+    addEtudiant(etudiantDTO: EtudiantDTO): Etudiant
+    updateEtudiant(id: ID!, etudiantDTO: EtudiantDTO): Etudiant
+    deleteEtudiant(id: ID!): String
+}
+
+# Subscriptions
+type Subscription {
+    etudiantAdded: Etudiant
+}
